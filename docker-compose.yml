@@ -12,7 +12,7 @@ services:
     image: tradingagents-backend:v1.0.0-preview
     container_name: tradingagents-backend
     ports:
-      - "8000:8000"
+      - "28001:8000"
     volumes:
       # 日志目录映射
       - ./logs:/app/logs
@@ -38,7 +38,7 @@ services:
       DOCKER_CONTAINER: "true"
       # API配置
       API_HOST: "0.0.0.0"
-      API_PORT: "8000"
+      API_PORT: "28001"
       # CORS配置
       CORS_ORIGINS: "http://localhost:3000,http://localhost:8080,http://localhost:5173"
     depends_on:
@@ -69,11 +69,11 @@ services:
     image: tradingagents-frontend:v1.0.0-preview
     container_name: tradingagents-frontend
     ports:
-      - "3000:80"
+      - "23000:80"
     environment:
       TZ: "Asia/Shanghai"
       # 后端API地址
-      VITE_API_BASE_URL: "http://localhost:8000"
+      VITE_API_BASE_URL: "http://localhost:28001"
     depends_on:
       backend:
         condition: service_healthy
